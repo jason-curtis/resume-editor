@@ -1,0 +1,87 @@
+
+
+#itemtemplate, #editdialog, #srcdialog, #sectiontemplate{
+	display: none;
+}
+
+/*fixed-pos side menu for viewing source*/
+#menu{
+	position:fixed;
+	left:0px;
+	top: 0px;
+	background-color: black;
+	color: white;
+	font-family: Tw Cen MT, Trebuchet MS, sans serif;
+	padding: 5px 0px;
+	font-size: 16px;
+	opacity: 0.5;
+}
+#menu a{
+	color: white;
+	text-decoration: none;
+	float:left;
+    padding: 0.5em 0em;
+}
+#menubuttons{
+    float:left;
+}
+#menubuttons a{
+    display: block;
+    border-right: 1px solid gray;
+    padding: 0.5em;
+}
+a#hidemenu{
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+}
+
+/*view-source dialog*/
+#srcdialog, #editdialog{
+	width: 500px;
+	text-align: center;
+}
+#srcarea, #editarea{
+	width: 100%;
+	height: 300px;
+}
+
+.additem{
+	display: inline;
+}
+
+.section ul li:last-child.noprint, .additem, .delitem, .section:last-child.noprint{
+	opacity: 0.4;
+}
+
+.deleted{
+    display: none;
+}
+
+.additem, .delitem{
+	text-decoration: none;
+	margin-left:0.2em;
+}
+
+
+@media screen {
+	.page{
+		/* should this be here? maybe should be in personal resume.css...*/
+		width: 8in;
+		height: 10.5in;
+		margin: 0.25in;
+		border: 1px dotted #eee;
+	}
+}
+@media print {
+	.page{
+		page-break-after: always;
+		page-break-inside: avoid;
+	}
+	.page:last-child{
+		page-break-after: auto;
+	}
+
+	.noprint{ display: none; }
+    body{margin: 0;
+    }
+}

@@ -1,0 +1,385 @@
+<html>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" ;="">
+    <title>Resume Editor</title>
+    <!--<link type="text/css" href="resume.css" rel="stylesheet"> this is now loaded through javascript; search 'load resume css'-->
+    <link type="text/css" href="css/resumeEditor.css" rel="stylesheet">
+    
+    <!--jquery stuff:-->
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.14.custom.css" rel="stylesheet">	
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jeditable.js"></script>
+    <script type="text/javascript" src="js/jquery.jeditable.autogrow.js"></script>
+    <script type="text/javascript" src="js/jquery.autogrow.js"></script>
+    <script type="text/javascript" src="js/jquery.urlvars.js"></script>
+    
+    <script>
+    
+    //if an existing item is being edited, that jquery object goes here:
+    var currentEditItem = null;
+    
+    //if the item being edited already exists, this is null. 
+    //Otherwise, this is the jquery object of the section title under which
+    //the new item will be placed.
+    var spotIfNewItem = null;
+    
+    var resume_loaded = false;
+    
+    function resumeLoaded(responseText, textStatus, XMLHttpRequest) {
+        $("#usercontent").html(responseText); //load resume into its div
+        resume_loaded = true;
+        
+        // a little warning not to change anything
+        //TODO: this should only appear is something has been changed.
+        window.onbeforeunload = function() { return "Careful, you may have changed something!"; };
+        
+        //~~~ links for deleting unwanted items
+        function initDelItems(){
+            //each title gets a little '-' button
+            $(".section:not(.noprint) .title:not(.itemtemplate .title, .withDel)").append(
+                "<a href='#' class='delitem noprint'>-</span>"
+            );
+            $(".section:not(.noprint) .title:not(.itemtemplate .title, .withDel)").addClass(
+                "withDel" );
+            
+            //clicking '-' deletes the parent
+            $(".delitem").click(function(value, settings){
+                $(this).parent().parent().hide("fade",function(){
+                    $(this).addClass('deleted');
+                });
+                
+                //remove();
+                initDelItems();
+                return false;
+            });
+        }
+        initDelItems();
+        
+        //undelete button
+        $("#undelete").click(function(value, settings){
+            $('.deleted').show('slide');
+            $('.deleted').removeClass('deleted');
+            return false;
+        });
+        
+        //~~~ links for adding new items
+        function initAddItems(){
+            //each _section_ title gets a little '+' button
+            $(".section:not(.noprint) .title:not(.item .title, .withAdd)").append(
+                "<a href='#' class='additem noprint'>+</span>"
+            );
+            $(".section:not(.noprint) .title:not(.item .title, .withAdd)").addClass(
+                "withAdd" );
+            
+            //clicking '+' opens the dialog to add a new item
+            $(".additem").click(function(value, settings){
+                spotIfNewItem = $(this).parent(); //the section title
+                currentEditItem = null;           //not an existing item
+                $("#editarea").val( $('#itemtemplate').html() );
+                $("#editdialog").dialog("open");
+                return false;
+            });
+        };
+        initAddItems();
+        
+
+        //~~~ making everything editable ~~~
+        //~~for editing large items: use a dialog box
+        //initialize edit dialog
+        $( "#editdialog" ).dialog({
+			autoOpen: false,
+            minWidth: 500,
+			show: "fade",
+            modal: true
+		});
+        
+        //'save' button in the edit dialog
+        $('#saveitemedit').click(function(value, settings){
+            //save changes to body html
+            if(spotIfNewItem){//this is a new item
+                spotIfNewItem.after( $("#editarea").val() );
+                initItemEditables();
+                initDelItems();
+            }
+            else{
+                currentEditItem.html( $("#editarea").val() );
+            }
+            $("#editdialog").dialog("close");
+            return false;
+        });
+        
+        //'cancel' button in the edit dialog
+        $('#cancelitemedit').click(function(value, settings){
+            //close without saving changes
+            $("#editdialog").dialog("close");
+            return false;
+        });
+        
+        
+        function initItemEditables(){
+            //clicking an item opens it in the edit dialog
+            /*
+            $('.item, .overviewstmt, .contact').dblclick( function(value, settings){
+                //open dialog for editing the item
+                currentEditItem = $(this);
+                spotIfNewItem = null;       //not a new item
+                $("#editarea").val( currentEditItem.html() );
+                $("#editdialog").dialog("open");
+            });*/
+        };
+        initItemEditables();
+        
+        
+        //~~for editing list items (smaller, in-place)
+        function initLiEditables(){
+            //make sure there is one prototype LI at the end of each list:
+            //TODO: use slicker Jquery here?
+            $(".section ul li:last-child:not(.noprint)").after(
+                "<li class='noprint'>(add item)</li>"
+            )
+            $('li, .name').editable(
+                function(value, settings) {
+                    if(value == ""){
+                        $(this).addClass('deleted');
+                    }
+                    else{
+                        $(this).html( value );
+                        $(this).removeClass('noprint');
+                    }
+                    
+                    initLiEditables(); //make any new LIs editable
+                },
+                {
+                    event: "dblclick",
+                    style:"inherit",
+                    onblur:"submit"
+                }
+            )
+        };
+        
+        initLiEditables();
+        
+        //~~for adding sections and editing section names
+        function initSecEditables(){
+            //make sure there is one prototype section at the end
+            $(".maincontent .section:last-child:not(.noprint)").after(
+                $("#sectiontemplate").html()
+            );
+            $(".maincontent .section:last-child").addClass("noprint");
+            
+            
+            $('.item, .overviewstmt, .contact, .section .title:not(.item .title)').editable(
+                function(value, settings) {
+                    //callback function -- called when editing is done
+                    $(this).html( value );
+                    
+                    //in case this was a prototype, remove .noprint class
+                    //now that it is real
+                    $(this).removeClass('noprint');
+                    $(this).parent().removeClass('noprint');
+                    
+                    initSecEditables(); //make any new sections editable
+                    
+                    initDelItems();
+                    initAddItems();
+                },
+                {
+                    event: "dblclick",
+                    //cancel:"Cancel",
+                    //Submit:"OK",
+                    style:"inherit",
+                    onblur:"submit",
+                    type: "autogrow",
+                    autogrow:{
+                        lineHeight: 16,
+                        minHeight: 32
+                    },
+                    tooltip: "drag to rearrange, double-click to edit"
+                }
+            )
+        };
+        
+        initSecEditables();
+        
+        
+        
+        //~~~ let user drag things around ~~~
+        $(".section, ul").sortable({
+            items: ".item, li"
+            //cancel: '.title:not(.item .title)'
+        });
+        $(".item").sortable({
+            items: "p"
+            //cancel: '.title:not(.item .title)'
+        });
+        $(".page").sortable({
+            items: ".section"
+            //cancel: '.title:not(.item .title)'
+        });
+        
+        
+        
+        //~~~ fixed-position menu with utilities ~~~
+        toggleMenu = function() {
+                if ($('#menubuttons').is(":visible")){//hide it
+                    $('#hidemenu').html(">");
+                    $('#menu').animate({opacity: 0.1});
+                    $('#menubuttons').hide("slide");
+                }
+                else{//show it
+                    $('#hidemenu').html("<");
+                    $('#menubuttons').show("slide");
+                    $('#menu').animate({opacity: 0.5});
+                };
+                return false;
+            };
+        $( "#hidemenu" ).click(
+            toggleMenu
+        );
+        
+        
+        //initialize source dialog
+        $( "#srcdialog" ).dialog({
+			autoOpen: false,
+            minWidth: 500,
+			show: "fade",
+            modal: true
+		});
+        
+        //show source dialog on click of 'view source' button
+        $( "#viewsrc" ).click(function() {
+            $( "#srcarea" ).val("");
+            
+            //clean the div of all the junk we added
+            //TODO: extend this so that when editing smaller items, user doesn't have to deal with our stuff.
+            srcClean = $("#usercontent").clone();
+            srcClean.find(".ui-sortable").removeClass("ui-sortable");
+            srcClean.find(".withAdd").removeClass("withAdd");
+            srcClean.find(".withDel").removeClass("withDel");
+            srcClean.find(".additem, .delitem, .noprint:not(#sectiontemplate, #itemtemplate)").remove();
+            srcClean.find("*").removeAttr("title");
+            
+            $( "#srcarea" ).val( srcClean.html() );
+			$( "#srcdialog" ).dialog( "open" );
+            
+			return false;
+        });
+        
+        //select source code on click
+        selectSrc = function() {
+                $( "#srcarea" ).focus();
+                $( "#srcarea" ).select();
+                return false;
+            }
+        $("#srcarea, #clickselect").click(selectSrc);
+        
+        //editing the 'new section' and 'new item' templates
+        $( "#viewtempl" ).click(function() {
+            currentEditItem = $('#templates');
+            $( "#editarea" ).val( currentEditItem.html() );
+			$("#editdialog").dialog("open");
+            
+			return false;
+        });
+        
+        
+        
+        //'save' button saves content
+        $( "#save" ).click(function() {
+            if (resume_loaded){
+                //encode user data for POST sending
+                var dataString = "filename="+filename+"&usercontent="+encodeURIComponent($('#usercontent').html());
+                alert(dataString);
+                
+                //send the user data as a POST form
+                $.ajax({
+                    type: "POST",
+                    url: "saveResume",
+                    data: dataString,
+                    contentType: "multipart/form-data",
+                    dataType: "text",
+                    success: function(data, textStatus, jqXHR) {
+                        //TODO: somehow check if we're overwriting files or something.
+                        alert("Your HTML and the source CSS file have been saved with the names "+data+".html/css!");
+                    }
+                });
+            }else{
+                alert("No resume loaded -> nothing to save!");
+            }
+        });
+        
+    };
+    
+    
+    //~~~~~~~~~~ get the resume data ~~~~~~~~~~~~
+    filename = "resume" // default filenames: resume.html, resume.css
+    
+    // first check if we have GET params that tell us what files to use
+    var urlVars = $.getUrlVars();
+    if ("filename" in urlVars){
+        var filename = urlVars["filename"] // we'll use filenames from GET param
+    } // (else use the default filename defined above)
+    
+    var css_file_name = '/'+filename+'.css'
+    var resume_file_name = '/'+filename+'.html'
+    
+    // load resume CSS by adding it to the document <head>
+    $('<link>', {
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: css_file_name
+    }).appendTo('head');
+    
+    // then load resume HTML using AJAX
+    $(document).ready(function() {
+        //note 'resumeLoaded()' callback will take care of formatting & stuff
+        $.get(resume_file_name, resumeLoaded).error(
+            function() {
+                alert("Resume Loading Failed. Check Filename.");
+                resume_loaded = false;
+            });
+    });
+    
+    
+    // for later: you can
+    $('link[href="'+css_file_name+'"]').remove();
+    
+    
+    </script>
+</head>
+<body style="cursor: auto; ">
+
+<div id="menu" class="noprint">
+    <div id="menubuttons">
+        <a href="#" id="viewsrc">view source</a>
+        <a href="#" id="undelete">undelete all</a>
+        <a href="#" id="viewtempl">templates</a>
+        <a href="#" id="save">save</a>
+    </div>
+    <a href="#" id="hidemenu">&lt;</a>
+</div>
+
+<!-- this is the dialog used for viewing page source-->
+<div id="srcdialog" title="Page source" class="noprint">
+<span id="clickselect">Click here or in box to select all</span>
+    <textarea id="srcarea" readonly>
+        page source will go here.
+    </textarea>
+</div>
+
+<!-- this is the dialog used for editing items-->
+<div id="editdialog" title="Edit item" class="noprint">
+    <textarea id="editarea">
+        item source will go here.
+    </textarea>
+    <a href="#" id="saveitemedit" class="ui-state-default ui-corner-all ui-state-hover">Commit</a>
+    <a href="#" id="cancelitemedit" class="ui-state-default ui-corner-all ui-state-hover">Cancel</a>
+</div>
+
+<div id="usercontent">
+Resume Not Loaded. Check filename and make sure you are running the server.
+<!-- this content is loaded with AJAX from the resume file-->
+</div><!--/usercontent-->
+</body>
+</html>
