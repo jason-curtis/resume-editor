@@ -136,12 +136,22 @@ body{
 	text-align: right;
 }
 
+ul {
+	list-style-type: none;
+	padding-inline-start: 2em;
+}
+
+ul li:before {
+	content: "";
+}
+
 .emphasis{
 	font-weight: bold;
 }
 
 .item{
 	margin-bottom: 1em;/*decrease to 0.6 if not enough space*/
+	margin-top: 1em;
 }
 .item.tight{
 	margin-bottom: 0;
@@ -154,18 +164,18 @@ body{
 	margin-left: 2em;
 }
 
-ul{
+.tight ul{
 	list-style-type: none;
 	padding-left: 0px;
 	margin-top: 4px;
 	margin-bottom: 4px;
 }
-ul li:before {/*bullets are lines instead of circles*/
+.tight ul li:before {/*bullets are lines instead of circles*/
 	content: " | ";
 	/*width:30px;*/
 	}
 
-li{
+.tight ul li{
 	/*min-width: 100px;*/
 	/*margin-left: 1em;*/
 	display: inline-block;

@@ -3,25 +3,25 @@
 
 <!-- this is the template used for adding new items (outer div not included) -->
 <div id="itemtemplate" class="noprint">
-    <div class="item">
+    <div class="item" style="">
         <div class="title">
             Title
             <div class="location">Location</div>
             <div class="date">Date</div>
         </div>
-        <p>
+        <p style="">
             Action phrase.
         </p>
-        <p>
+        <p style="">
             <span class="emphasis">Emphasis:</span> items A, B and C.
         </p>
-    </div><!--/item-->  
+    </div><!--/item-->
 </div>
 
 <!-- this is the template used for adding new sections (outer div not included) -->
 <div id="sectiontemplate" class="noprint">
-<div class="section">
-    <div class="title">
+<div class="section" style="">
+    <div class="title" style="">
         New Section
     </div>
 </div>
@@ -34,7 +34,7 @@
         <div class="name">Jason R. Curtis</div>
         <div class="overviewstmt">
         <!--<div class="title">Summary:</div>-->
-        Experienced software engineer with passions for sustainability, learning and the outdoors.
+        Full-stack software engineer. Highly versatile, with exceptional system- and project awareness.
         <!--<div class="title">Objective:</div>
         To work, in software and robotics,
         toward a better world.-->
@@ -42,59 +42,75 @@
 
         <div class="contact"><p style="
     margin-top: 0;
-">703.980.6256     
+">703.980.6256
 <br>jrussellcurtis@gmail.com        <br>www.jasonrcurtis.com</p><p></p></div>
     </div>
 
 
-    <div class="section"><div class="title">Education</div>
-        <div class="item">
-            <div class="title">
-                Franklin W. Olin College of Engineering 
-                <div class="location">Needham, MA</div> 
-                <div class="date">May 2012</div>
-            </div>
-            <p>
-                Recipient of 4 year, full tuition merit scholarship. BS in Engineering with Concentration in Computing, GPA 3.83
-            </p>
-            <p>
-                <span class="emphasis">Coursework included:</span> Sustainable Design, Computer Architecture, Robotics I &amp; II, Sensors, Mechatronics, Discrete Mathematics.
-            </p>
-        </div><!--/item--> 
-        
-        <div class="item">
-            <div class="title">
-                Nanyang Technological University - Study Away
-                <div class="location">Singapore</div> 
-                <div class="date">Jan-May 2011</div>
-            </div>
-            <p>
-                <span class="emphasis">Coursework included:</span> Algorithms, Operating Systems, Artificial Intelligence
-            </p>
-        </div><!--/item-->
-        
-        <div class="item">
-            <div class="title">
-                Stockholm International High School - International Baccalaureate
-                <div class="location">Stockholm, Sweden</div> 
-                <div class="date">May 2008</div>
-            </div>
-        </div><!--/item-->
-        
-    </div><!--/section -->
+    <!--/section -->
 
     <div class="section"><div class="title">Employment</div>
-    <div class="item">
+    <!--/item-->
+
+    <div class="item deleted" style="display: none;">
+        <div class="title">
+            Title
+            <div class="location">Location</div>
+            <div class="date">Date</div>
+        </div>
+        <p style="">
+            Action phrase.
+        </p>
+        <p style="">
+            <span class="emphasis">Emphasis:</span> items A, B and C.
+        </p>
+    </div><!--/item-->
+
+    <div class="item" style="">
+        <div class="title">
+            Osmo Systems - Senior Software Engineer
+            <div class="location">Oakland, CA</div>
+            <div class="date">April 2018-Jan 2019</div>
+        </div>
+        <p style="">
+            Building a first-of-its kind IoT sensor to measure water quality, with the potential to improve aquaculture yields by 30%. Small, 7-person company.
+</p><ul class="">
+<li><span class="emphasis">Software:</span> Built and maintained experimental data collection and analysis software, collecting and using terabytes of test data. Maintained and extended IoT data pipeline and web app (AWS Lambda, IOT, RDS, EC2. Node, React, SASS).</li>
+
+<li class="" style=""><span class="emphasis">Analysis:</span> Provided deep understanding of the system with strong critical thinking backed by statistical methods, pandas/numpy/scipy, system diagramming, and Keras deep learning models.</li><li><span class="emphasis">Leadership:</span> Instigated strategic planning. Led initiatives to break down the "error stack" of the system in an attempt to increase robustness. Mentored the team in scientific programming and established code style practices and infrastructure (jupyter, tox, black, CircleCI).
+        </li>
+    </ul></div><div class="item" style="">
+        <div class="title">
+            Jason Curtis Photography
+            <div class="location">Various locations</div>
+            <div class="date">Fall 2017-present</div>
+        </div>
+        <p style="">
+             Took a sabbatical from full-time software engineering to travel in a van, rock climb, ski and turn my photography into a business. I sell labeled panoramas of mountain ranges and cities. Labelling is supported by my Python applications and Photoshop scripting.
+        </p>
+    </div><!--/item-->
+
+    <!--/item-->
+
+    <div class="item" style="">
+        <div class="title">
+            UPROPE - Chief Technical Officer
+            <div class="location">Seattle, WA</div>
+            <div class="date">Mar-Jul 2017</div>
+        </div>
+        <p style="">
+            Joined 1-person team building software and hardware enhancements for climbing gyms. Conducted user research to find opportunities. Designed and prototyped a competition tracking system (tracking app, database, scoreboard) in &lt;1 mo from conception to a user-facing test with potential customers.
+        </p></div><div class="item" style="">
 
         <div class="title">
             EnergySavvy - Software Engineer Lead
             <div class="location">Seattle, WA</div>
-            <div class="date">2014-Present</div>
+            <div class="date">Mar 2014-Mar 2017</div>
         </div>
-        <p>
-            Leading the team that built &amp; shipped an entirely new product, Optix Quantify, which allows optimizing energy efficiency programs in ways never before possible. Work in data science, data pipelines &amp; web app architecture as well as feature design, feature development &amp; team management. Programming in Python and JavaScript with React &amp; Sass; built a team that supports each other in building awesome, maintainable product.
+        <p class="" style="">
+            Lead the team that built &amp; shipped an entirely new product, Optix Quantify, which allows optimizing energy efficiency programs in ways never before possible by running predictive analytics on millions of homes. Work in data science, data pipelines &amp; web app architecture as well as feature design, feature development &amp; team management. Programming in Python and JavaScript (React); built a team that supports each other in building awesome, maintainable product.
         </p>
-    </div><!--/item-->  
+    </div><!--/item-->
 
     <div class="item">
         <div class="title">
@@ -103,11 +119,11 @@
             <div class="date">Summer 2012-2014</div>
         </div>
         <p>
-            Developed &amp; maintained EnergySavvy's flagship Optix Manage product, bringing energy efficiency program management into the 21st century.
+            Developed &amp; maintained EnergySavvy's flagship Optix Manage product, supporting home and business energy efficiency projects across the USA.
         </p>
         <p>
-            Helped keep EnergySavvy's codebase healthy &amp; developer experience great as the product moved from 2 customized instances and 4 developers to &gt;10 of each.
-        </p></div><!--/item-->  
+            Navigated and alleviated the growing pains of a successful product as we expanded from supporting 2 power utility clients to 14, and 4 developers to &gt;10. Personally brought per-customer implementation time from weeks to &lt;1 day and cut automated test wait time by a factor of 10.
+        </p></div><!--/item-->
 
         <div class="item">
             <div class="title">
@@ -130,20 +146,20 @@
             <p>
                 Designed databases for future green building certification systems. Conceptualized, designed and built database-driven web application to collect building occupant experience data. Implemented in MySQL, PHP, HTML, CSS, JavaScript, Python.
             </p>
-        </div><div class="item">
+        </div><div class="item deleted" style="display: none;">
             <div class="title">
                 Outdoor Education Camps
                 <div class="position"> Counselor / Trip Leader</div>
                 <div class="location">Sweden and Maryland</div>
                 <div class="date">Summers 2007-2009</div>
             </div>
-            <p>
+            <p style="">
                 Led 8-14 year olds through summers of adventure: low-impact and Leave-No-Trace living, outdoor skills, revelry in the beauty of life, creative problem solving. Collaboration w/ co-counselors while teaching sailing, backpacking, rock climbing, whitewater canoeing and more.
             </p>
-        </div><!--/item-->  
+        </div><!--/item-->
 
-        <!--/item-->  
-        
+        <!--/item-->
+
         <div class="item deleted" style="display: none;">
             <div class="title">
                 Sensors and Measurement Class
@@ -151,40 +167,59 @@
                 <div class="location">Olin College</div>
                 <div class="date">Spring 2010</div>
             </div>
-            <p>
+            <p style="">
                 Provided tutorials, managed and coordinated course assistant team for course in circuits, instrumentation, and LabVIEW programming. Designed data logger for use in students' final project. CA'd for MATLAB simulation class in Fall 2009.
             </p>
-        </div><!--/item-->  
-        
-        <!--/item-->  
+        </div><!--/item-->
+
+        <!--/item-->
     </div><!--/section -->
 
 
 
     <div class="section"><div class="title">Projects</div>
-    <!--/item-->  
+    <!--/item-->
 
-        <div class="item">
+    <!--/item-->
+
+        <div class="item" style="">
             <div class="title">Robotic Sailboat
                 <div class="position">Lead Programmer, Assistant Project Manager</div>
                 <div class="location">Olin College</div>
                 <div class="date">Fall 2011-Spring 2012</div>
             </div>
-            <p>
-            Led 10+ programmers to take 2nd place in International Robot Sailing Competition as a first-year team; invited to speak as a project lead at National Instruments NIWeek Keynote. Designed &amp; built offboard Operator Control Unit which set us apart from the competition. Conducted system design and used algorithms for vision and sensory data processing, cognition, and actuation. Years of experience in other robotics projects.
+            <p class="" style="">
+            Led 10+ programmers to take 2nd place in International Robot Sailing Competition as a first-year team; invited to speak as a project lead at National Instruments NIWeek Keynote. Designed &amp; built offboard Operator Control Unit which set us apart from the competition. Conducted system design and used algorithms for vision and sensory data processing, cognition, and actuation. Led &amp; completed multiple other robotics projects.
             </p>
-        </div><!--/item--> 
+        </div><div class="item" style="">
+        <div class="title">
+            "Uber for Rickshaws"
+            <div class="location">Guwahati, India</div>
+            <div class="date">Fall 2011-Spring 2012</div>
+        </div>
+        <p style="">
+            Worked in a team of students to create solutions for rickshaw drivers and urban poor in India. Pursued a cell-geolocation-based rickshaw-on-call service (before I knew of Uber - their first ride was also 2011). Conducted field research in India, manufactured prototypes, presented and handed off rickshaw-on-call project to executives and engineers at Vodafone India.
+        </p>
+    </div><!--/item-->
 
         <div class="item deleted" style="display: none;">
             <div class="title">
             Ultrasonic Anemometer
-            
+
             <div class="date">Spring 2010</div>
             </div>
-            <p>
+            <p style="">
             Designed &amp; built device for low-cost wind-speed measurement with minimal moving parts, using circuit design &amp; algorithms.
             </p>
-        </div><div class="item">
+        </div><div class="item" style="">
+        <div class="title">
+            Resume Editor
+            <div class="date">Summer 2011</div>
+        </div>
+        <p>
+            Designed and built what-you-see-is-what-you-get (WYSIWYG) resume editor, used to create this resume. Implemented in JavaScript, JQuery, HTML, CSS.
+        </p>
+    </div><div class="item">
             <div class="title">
             Sustainable Smartroom
             <div class="date">Fall 2009</div>
@@ -192,63 +227,89 @@
             <p>
             Designed &amp; built room automation retrofit for sustainability. Network design, PIC &amp; Xbee programming in C, circuit design.
             </p>
-        </div><!--/item--> 
+        </div><!--/item-->
 
-        <div class="item">
-        <div class="title">
-            Resume Editor
-            <div class="date">Summer 2011-present</div>
-        </div>
-        <p>
-            Designed and built what-you-see-is-what-you-get (WYSIWYG) resume editor, used to create this resume. Implemented in JavaScript with JQuery, HTML, CSS, CGI and custom Python HTTP server.
-        </p>
-    </div><!--/item--> 
+        <!--/item-->
     </div><!--/section -->
 
 
-    <div class="section"><div class="title">Skills</div>
+    <div class="section" style=""><div class="title">Education</div>
+        <div class="item">
+            <div class="title">
+                Franklin W. Olin College of Engineering
+                <div class="location">Needham, MA</div>
+                <div class="date">May 2012</div>
+            </div>
+            <p>
+                Recipient of 4 year, full tuition merit scholarship. BS in Engineering with Concentration in Computing, GPA 3.83
+            </p>
+            <p>
+                <span class="emphasis">Coursework included:</span> Sustainable Design, Computer Architecture, Robotics I &amp; II, Sensors, Mechatronics, Discrete Mathematics.
+            </p>
+        </div><!--/item-->
+
+        <div class="item">
+            <div class="title">
+                Nanyang Technological University - Study Away
+                <div class="location">Singapore</div>
+                <div class="date">Jan-May 2011</div>
+            </div>
+            <p>
+                <span class="emphasis">Coursework included:</span> Algorithms, Operating Systems, Artificial Intelligence
+            </p>
+        </div><!--/item-->
+
+        <div class="item deleted" style="display: none;">
+            <div class="title">
+                Stockholm International High School - International Baccalaureate
+                <div class="location">Stockholm, Sweden</div>
+                <div class="date">May 2008</div>
+            </div>
+        </div><!--/item-->
+
+    </div><div class="section"><div class="title">Skills</div>
         <div class="item tight">
             <div class="title inline">
                 Languages and Tools
             </div>
-            <ul>
+            <ul class="">
                 <li>Python</li>
                 <li>JavaScript</li>
-                <li>C/C++</li>
-                <li>MySQL</li>
+                <li class="" style="">Numpy</li><li class="" style="">Scipy</li>
+                <li class="" style="">Keras</li><li>AWS</li>
                 <li>CSS/SASS</li>
                 <li>Django</li>
                 <li>React</li>
-                <li>Mercurial</li>
-                <li>Git</li>
+
+                <li>Git</li><li class="">Plotly</li>
                 <!--<li>You name it: I'll learn it</li>-->
             </ul>
         </div><!--/item-->
-        
+
         <div class="item tight">
             <div class="title inline">
                 Certifications
             </div>
-            <ul>
-                <li>Scuba</li>
-                <li>Wilderness First Responder</li>
-                <li>LEED Green Associate</li>
-                <li>Search &amp; Rescue</li>
-            </ul>
-        </div><!--/item-->
-        <div class="item tight">
+            <ul class="">
+                <li class="" style="">Search &amp; Rescue</li>
+                <li>Wilderness First Responder</li><li class="" style="">Scuba Open Water</li>
+                <li>LEED Green Associate</li><div class="item tight" style="">
             <div class="title inline">
                 Additional Skills
             </div>
-            <ul>
-                <li>Unicycling</li>
-                <li>A Capella Singing</li>
-                <li>Parkour</li>
-                <li>Juggling</li>
-                <li>Photography</li>
+            <ul class="">
+                <li class="" style="">Parkour</li><li class="" style="">Photography</li><li>Unicycling</li>
+                <li>A Capella</li>
+
+                <li>Camp Counselor</li>
+
                 <li>Ultimate Frisbee</li>
             </ul>
-        </div><!--/item -->
+        </div>
+
+            </ul>
+        </div><!--/item-->
+        <!--/item -->
 
     </div><!--/section -->
 
