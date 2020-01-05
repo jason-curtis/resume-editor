@@ -1,8 +1,8 @@
 resume editor by Jason Curtis, Aug. 2011.
 
 ## how to run:
-run `python -m simpleHTTPServer` and then open `http://localhost:8000/resumeEditor.html#` in a Web browser. 
-If the resume shows up, you're golden.
+* Locally: run `python -m simpleHTTPServer` and then open `http://localhost:8000` in a Web browser. The editor will show up.
+* On GitHub Pages If you're viewing this on GH pages, just visit http://thatneat.github.io/resume-editor/index.html 
 
 ## usage:
 Drag things around to move them, double-click to edit them. CSS editing not currently supported -- I use devtools for live edits and then copy stuff to file.
