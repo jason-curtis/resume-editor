@@ -1,7 +1,7 @@
 resume editor by Jason Curtis, Aug. 2011.
 
 ## how to run:
-* Locally: run `python -m simpleHTTPServer` and then open `http://localhost:8000` in a Web browser. The editor will show up.
+* Locally: run `python3 -m http.server` and then open `http://localhost:8000` in a Web browser. The editor will show up.
 * On GitHub Pages If you're viewing this on GH pages, just visit http://thatneat.github.io/resume-editor/index.html 
 
 ## usage:
