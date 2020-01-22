@@ -67,7 +67,7 @@ a#hidemenu{
 	.page{
 		/* should this be here? maybe should be in personal resume.css...*/
 		width: 8in;
-		height: 10.5in;
+		min-height: 10.5in;
 		margin: 0.25in;
 		border: 1px dotted #eee;
 	}
@@ -81,7 +81,7 @@ a#hidemenu{
 		page-break-after: auto;
 	}
 
-	.noprint{ display: none; }
+	.noprint, .noprint * { display: none !important; }
     body{margin: 0;
     }
 }

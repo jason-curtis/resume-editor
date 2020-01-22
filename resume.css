@@ -1,4 +1,4 @@
-body{
+body, .subtitle{
 	font-family: Book Antiqua, serif;
 	font-size: 12px;
 }
@@ -7,6 +7,23 @@ body{
 	page-break-inside: avoid;
 }
 
+a {
+	color: #4275a0; /* Just the barest hint of link-ness */
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+.header, .footer {
+	font-family: Tw Cen MT, Trebuchet MS, sans serif;
+	text-align: center;
+}
+.header .subtitle, .footer .subtitle {
+    font-style: italic;
+    margin-left: 0.5em;
+}
 /*'header' info sidebar*/
 .header{
 	/*this includes name, objective and contact info*/
@@ -47,7 +64,7 @@ body{
 	text-align: left;
 	font-size: 14px;
 	font-family: Tw Cen MT, Trebuchet MS, sans serif;
-	font-style: italic;
+	/*font-style: italic;*/
 	border-left: 1px dashed #ddd;
 	padding: 1em;
 }
@@ -86,6 +103,13 @@ body{
 .section .title{
 	border-bottom:1px solid black;
 }
+.section .title .subtitle {
+    text-transform: initial;
+    font-weight: initial;
+    font-style: italic;
+    margin-left: 0.5em;
+}
+
 /*.section .title .location{
 	display: inline;
 	font-style:normal;
@@ -138,8 +162,14 @@ body{
 }
 
 ul {
-	list-style-type: none;
+	/*list-style-type: none;*/
 	padding-inline-start: 2em;
+}
+ul:first-of-type {
+	margin-top: 0.5em;
+}
+ul ul, ul ul:first-of-type {
+	margin-top: 0;
 }
 
 ul li:before {
@@ -170,7 +200,7 @@ ul li:before {
 }
 
 .tight ul{
-	list-style-type: none;
+	/*list-style-type: none;*/
 	padding-left: 0px;
 	margin-top: 4px;
 	margin-bottom: 4px;
